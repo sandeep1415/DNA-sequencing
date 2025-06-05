@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 
 try:
@@ -5,7 +6,8 @@ try:
 except ImportError:  # gracefully handle missing dependency
     number = None
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(__file__)
+app = Flask(__name__, template_folder=os.path.join(BASE_DIR, 'templates'))
 
 @app.route('/')
 def index():
@@ -30,5 +32,10 @@ def do_number():
             result = "Sequence could not be numbered."
     return render_template('index.html', numbering=result)
 
+def main():
+    """Launch the Flask development server."""
+    app.run(debug=False, host="0.0.0.0", port=5000)
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    main()
