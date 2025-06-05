@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ANARCI Web Interface</title>
+</head>
+<body>
+    <h1>Number Antibody Sequences with ANARCI</h1>
+    <form action="/number" method="post">
+        <textarea name="sequence" rows="10" cols="80" placeholder="Enter amino acid sequence"></textarea><br/>
+        <label for="scheme">Numbering scheme:</label>
+        <select name="scheme">
+            <option value="imgt">IMGT</option>
+            <option value="kabat">Kabat</option>
+            <option value="chothia">Chothia</option>
+            <option value="martin">Martin</option>
+            <option value="AHo">AHo</option>
+        </select>
+        <br/>
+        <input type="submit" value="Number" />
+    </form>
+    {% if numbering %}
+    <h2>Result</h2>
+    <pre>{{ numbering }}</pre>
+    {% endif %}
+</body>
+</html>
